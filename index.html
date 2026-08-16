@@ -76,15 +76,9 @@
     }
 
     @keyframes floatLogo {
-      0% {
-        transform: translateY(0px);
-      }
-      50% {
-        transform: translateY(-12px);
-      }
-      100% {
-        transform: translateY(0px);
-      }
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0px); }
     }
 
     .character-container {
@@ -221,7 +215,6 @@
       margin-bottom: 10px;
     }
 
-    /* PESTAÑAS WIKI (ESTILO FANDOM) */
     .infobox-tabs {
       display: flex;
       justify-content: center;
@@ -272,17 +265,14 @@
 </head>
 <body>
 
-  <!-- Audio de Fondo (Menu Music) -->
   <audio id="bg-music" loop>
     <source src="menu.ogg" type="audio/ogg">
   </audio>
 
-  <!-- Audio de Select Hover -->
   <audio id="select-sound">
     <source src="select.wav" type="audio/wav">
   </audio>
 
-  <!-- Audio de Click -->
   <audio id="click-sound">
     <source src="click.wav" type="audio/wav">
   </audio>
@@ -315,7 +305,6 @@
     </div>
   </main>
 
-  <!-- MODAL WIKI -->
   <div id="wiki-modal" class="wiki-modal">
     <div class="wiki-content">
       <span class="close-wiki" onclick="closeWiki()">&times;</span>
@@ -325,12 +314,8 @@
 
         <div class="wiki-infobox">
           <div class="infobox-title" id="info-title">Nombre</div>
-          
-          <!-- Pestañas de Imagen -->
           <div class="infobox-tabs" id="infobox-tabs"></div>
-
           <img id="info-img" src="" class="infobox-img">
-
           <div class="infobox-data" id="info-data"></div>
         </div>
       </div>
@@ -338,26 +323,22 @@
   </div>
 
   <script>
-    // Configuración del audio de fondo
     const bgMusic = document.getElementById('bg-music');
-    bgMusic.volume = 0.2; // Volumen bajo (20%)
+    bgMusic.volume = 0.2;
 
-    // Reproducir audio tras la primera interacción del usuario
     function startBgMusic() {
       bgMusic.play().then(() => {
         document.removeEventListener('click', startBgMusic);
-      }).catch(err => console.log("Autoplay bloqueado hasta interacción:", err));
+      }).catch(err => console.log("Autoplay bloqueado:", err));
     }
     document.addEventListener('click', startBgMusic);
 
-    // Pausar música de fondo si reproducen la canción de FNF
     const fnfPlayer = document.getElementById('audio-player');
     if (fnfPlayer) {
       fnfPlayer.onplay = () => bgMusic.pause();
       fnfPlayer.onpause = () => bgMusic.play();
     }
 
-    // Efecto de sonido Select al pasar el cursor (Hover)
     const selectSound = document.getElementById('select-sound');
     selectSound.volume = 0.5;
 
@@ -381,9 +362,8 @@
       }
     });
 
-    // Efecto de sonido Click
     const clickSound = document.getElementById('click-sound');
-    clickSound.volume = 0.6; // Volumen del clic (60%)
+    clickSound.volume = 0.6;
 
     function playClickSound() {
       clickSound.currentTime = 0;
@@ -410,7 +390,7 @@
       jarry: {
         name: "Jarry",
         images: [
-          { label: "EL TORMENTOR", src: "JarryosTormentor.png" },
+          { label: "EL TORMENTOR", src: "JarryosTormentor.jpg" },
           { label: "Jarry", src: "Jarry.png" }
         ],
         quote: '"¡NO SOY UN MONSTRUO... SOLO SOY UN NIÑO QUE QUERÍA SUS ROBUX, NO ES MI CULPA QUE LA GENTE SEA TAN IMBÉCIL CONMIGO!"',
@@ -428,7 +408,6 @@
       document.getElementById('wiki-header').innerText = data.name;
       document.getElementById('info-title').innerText = data.name;
 
-      // Cargar Pestañas de Imágenes
       const tabsContainer = document.getElementById('infobox-tabs');
       tabsContainer.innerHTML = '';
 
@@ -445,16 +424,13 @@
         tabsContainer.style.display = 'none';
       }
 
-      // Imagen inicial
       document.getElementById('info-img').src = data.images[0].src;
 
-      // Texto de la Wiki
       document.getElementById('wiki-text').innerHTML = `
         <div class="wiki-quote">${data.quote}</div>
         <p>${data.desc}</p>
       `;
 
-      // Datos Infobox
       document.getElementById('info-data').innerHTML = `
         <div class="infobox-row"><span class="infobox-label">Especie:</span> ${data.species}</div>
         <div class="infobox-row"><span class="infobox-label">Estado:</span> ${data.status}</div>
@@ -481,8 +457,9 @@
       } else if (section === 'credits') {
         content.innerHTML = `
           <h1 style="font-family:'Creepster'; font-size: 3.5rem; color:#ff1a1a;">CRÉDITOS</h1>
-          <p style="font-size: 2rem;">Director & Artista: Matteo</p>
-          <p style="font-size: 1.8rem; color:#888;">Jarry's Timeless Torment Team</p>
+          <p style="font-size: 2rem; margin-bottom: 5px;"><strong>Director:</strong> Matteo</p>
+          <p style="font-size: 2rem;"><strong>Artistas:</strong> Matteo & dniboom</p>
+          <p style="font-size: 1.8rem; color:#888; margin-top: 20px;">Jarry's Timeless Torment Team</p>
         `;
       } else if (section === 'teasers') {
         content.innerHTML = `
